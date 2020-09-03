@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 const weatherState = atom({
   key: 'weather',
-  default: [],
+  default: {},
 });
 
 const searchTermState = atom({

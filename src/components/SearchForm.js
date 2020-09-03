@@ -11,6 +11,8 @@ function SearchForm() {
     e.preventDefault();
 
     setSearchTerm(inputRef.current.value);
+
+    inputRef.current.value = '';
   }
 
   return (
