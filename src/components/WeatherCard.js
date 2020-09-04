@@ -2,6 +2,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { weatherState as weatherStateAtom } from '../recoil/atoms';
 import { Badge, Box, Image, Text, Flex, Stack } from '@chakra-ui/core';
+import { toggleTempColor } from '../utils/toggleTempColor';
 
 function WeatherCard() {
   const weather = useRecoilValue(weatherStateAtom);
@@ -15,23 +16,6 @@ function WeatherCard() {
   const wind = weather.wind.speed;
   const alt = weather.weather[0].main;
   const icon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
-
-  function toggleTempColor(temp) {
-    let color = '';
-    if (temp >= 90) {
-      color = 'red';
-    } else if (temp < 90 && temp >= 75) {
-      color = 'orange';
-    } else if (temp < 75 && temp >= 55) {
-      color = 'teal';
-    } else if (temp < 55 && temp >= 33) {
-      color = 'cyan';
-    } else {
-      color = 'blue';
-    }
-
-    return color;
-  }
 
   const color = toggleTempColor(temp);
 
