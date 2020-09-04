@@ -23,7 +23,7 @@ function WeatherCard() {
 
   function genCard() {
     return (
-      <Box p="6" maxW="md" borderWidth="1px" rounded="lg" overflow="hidden">
+      <Box p="6" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
         <Box
           mt="1"
           fontWeight="semibold"

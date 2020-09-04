@@ -41,7 +41,9 @@ function Forecast() {
       const low = Math.round(day.main['temp_min']);
       const description = day.weather[0].main;
       const icon = `https://openweathermap.org/img/w/${day.weather[0].icon}.png`;
-      const date = new Date(day.dt_txt).toLocaleDateString();
+      let date = day.dt_txt.slice(0, 10);
+
+      console.log();
 
       const color = toggleTempColor(temp);
 
