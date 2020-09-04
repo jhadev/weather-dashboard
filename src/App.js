@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Container, Row, Col } from 'react-bootstrap';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+import { CSSReset, Flex, Stack } from '@chakra-ui/core';
 import { client } from './utils/client';
 import {
   weatherState as weatherStateAtom,
   searchTermState as searchTermAtom,
 } from './recoil/atoms';
+import ColorMode from './components/ColorMode';
 import SearchForm from './components/SearchForm';
 import WeatherCard from './components/WeatherCard';
+import NavDrawer from './components/NavDrawer';
+import ToggleColorMode from './components/ToggleColorMode';
 
 function App() {
   const [weather, setWeather] = useRecoilState(weatherStateAtom);
@@ -26,20 +32,21 @@ function App() {
   }, [searchTerm]);
 
   return (
-    <main>
-      <Container>
-        <Row>
-          <Col xs={12} md={4}>
-            <h1>Hello</h1>
-            <SearchForm />
-          </Col>
-          <Col xs={12} md={8}>
+    <ColorMode>
+      <CSSReset />
+      <main>
+        <NavDrawer title="weather dashboard">
+          <ToggleColorMode />
+          <SearchForm />
+        </NavDrawer>
+        <Flex direction="row" justifyContent="center">
+          <Stack spacing={2}>
             {Object.keys(weather).length && <WeatherCard />}
-            {/* <pre>{JSON.stringify(weather, null, 2)}</pre> */}
-          </Col>
-        </Row>
-      </Container>
-    </main>
+            <pre>{JSON.stringify(weather, null, 2)}</pre>
+          </Stack>
+        </Flex>
+      </main>
+    </ColorMode>
   );
 }
 

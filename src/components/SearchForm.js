@@ -1,7 +1,15 @@
 import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { Form, Button } from 'react-bootstrap';
+
 import { searchTermState as searchTermAtom } from '../recoil/atoms';
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Input,
+  Button,
+} from '@chakra-ui/core';
 
 function SearchForm() {
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermAtom);
@@ -16,16 +24,24 @@ function SearchForm() {
   }
 
   return (
-    <Form onSubmit={submit}>
-      <Form.Group controlId="searchl">
-        <Form.Label>Search for City</Form.Label>
-        <Form.Control ref={inputRef} type="text" placeholder="New York" />
-        <Form.Text className="text-muted">search for a city.</Form.Text>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+    <form onSubmit={submit}>
+      <FormControl>
+        <FormLabel htmlFor="search">Search for a city.</FormLabel>
+        <Input ref={inputRef} id="search" placeholder="New York" />
+        <Button
+          type="submit"
+          p={3}
+          variantColor="pink"
+          height="100%"
+          rounded="lg"
+          fontSize="xl"
+          width="100%"
+          mx="auto"
+          my={2}>
+          search
+        </Button>
+      </FormControl>
+    </form>
   );
 }
 
