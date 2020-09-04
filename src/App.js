@@ -66,7 +66,6 @@ function App() {
           ) : (
             <Loading />
           )}
-          <Box></Box>
         </Flex>
       </main>
     </ColorMode>

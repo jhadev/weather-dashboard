@@ -14,7 +14,7 @@ function WeatherCard() {
   const humidity = weather.main.humidity;
   const wind = weather.wind.speed;
   const alt = weather.weather[0].main;
-  const icon = `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+  const icon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
   function toggleTempColor(temp) {
     let color = '';
