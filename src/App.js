@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-// import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
-import { CSSReset, Flex, Stack } from '@chakra-ui/core';
+import { CSSReset, Flex, Stack, Box } from '@chakra-ui/core';
 import { client } from './utils/client';
 import {
   weatherState as weatherStateAtom,
@@ -11,13 +8,21 @@ import {
 } from './recoil/atoms';
 import ColorMode from './components/ColorMode';
 import SearchForm from './components/SearchForm';
-import WeatherCard from './components/WeatherCard';
 import NavDrawer from './components/NavDrawer';
 import ToggleColorMode from './components/ToggleColorMode';
+import Loading from './components/Loading';
+import WeatherCard from './components/WeatherCard';
+// const WeatherCard = React.lazy(() => import('./components/WeatherCard'));
 
 function App() {
   const [weather, setWeather] = useRecoilState(weatherStateAtom);
   const searchTerm = useRecoilValue(searchTermAtom);
+
+  console.log(weather);
+
+  const isLoaded = Object.keys(weather).length ? true : false;
+
+  console.log(isLoaded);
 
   useEffect(() => {
     async function getWeather() {
@@ -29,21 +34,26 @@ function App() {
     }
 
     getWeather();
-  }, [searchTerm]);
+  }, [searchTerm, setWeather]);
 
   return (
     <ColorMode>
       <CSSReset />
       <main>
-        <NavDrawer title="weather dashboard">
+        <NavDrawer height="10vh" title="weather dashboard">
           <ToggleColorMode />
           <SearchForm />
         </NavDrawer>
-        <Flex direction="row" justifyContent="center">
-          <Stack spacing={2}>
-            {Object.keys(weather).length && <WeatherCard />}
-            <pre>{JSON.stringify(weather, null, 2)}</pre>
-          </Stack>
+        <Flex height="90vh" direction="row" align="center" justify="center">
+          {isLoaded ? (
+            <Stack spacing={2}>
+              <WeatherCard />
+              {/* <pre>{JSON.stringify(weather, null, 2)}</pre> */}
+            </Stack>
+          ) : (
+            <Loading />
+          )}
+          <Box></Box>
         </Flex>
       </main>
     </ColorMode>

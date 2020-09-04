@@ -1,15 +1,7 @@
 import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
-
 import { searchTermState as searchTermAtom } from '../recoil/atoms';
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input,
-  Button,
-} from '@chakra-ui/core';
+import { FormControl, FormLabel, Input, Button } from '@chakra-ui/core';
 
 function SearchForm() {
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermAtom);
