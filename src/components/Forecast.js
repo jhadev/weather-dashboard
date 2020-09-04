@@ -105,7 +105,7 @@ function Forecast() {
                     color="gray.500"
                     fontWeight="semibold"
                     letterSpacing="wide"
-                    fontSize="2xl"
+                    fontSize="xl"
                     textTransform="uppercase">
                     High: {high} °F &bull; Low: {low} °F
                   </Box>

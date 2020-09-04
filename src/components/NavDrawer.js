@@ -16,7 +16,7 @@ const NavDrawer = ({ children, title }) => {
   const [placement, setPlacement] = useState('top');
 
   return (
-    <div m={'auto'}>
+    <div>
       <Button
         variant="ghost"
         height="100%"
