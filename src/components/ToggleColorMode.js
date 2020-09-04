@@ -9,6 +9,7 @@ const ToggleColorMode = () => {
         variantColor={colorMode === 'light' ? 'gray' : 'yellow'}
         variant="ghost"
         width="100%"
+        size="lg"
         my={2}
         onClick={toggleColorMode}>
         {colorMode === 'light' ? <Icon name="moon" /> : <Icon name="sun" />}

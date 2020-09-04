@@ -33,7 +33,6 @@ function WeatherCard() {
           <Flex justify="center" direction="row">
             <Stack textAlign="center" spacing={2}>
               <Text
-                color="gray.700"
                 textTransform="uppercase"
                 fontWeight="bold"
                 fontSize="2xl"

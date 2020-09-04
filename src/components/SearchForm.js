@@ -41,7 +41,12 @@ function SearchForm({ history }) {
               htmlFor="search">
               Search for a location
             </FormLabel> */}
-            <Input ref={inputRef} id="search" placeholder="NEW YORK" />
+            <Input
+              ref={inputRef}
+              size="lg"
+              id="search"
+              placeholder="NEW YORK"
+            />
 
             <Button
               type="submit"
