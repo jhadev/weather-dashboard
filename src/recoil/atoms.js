@@ -11,7 +11,7 @@ const weatherState = atom({
 
 const searchTermState = atom({
   key: 'searchTerm',
-  default: parsed[parsed.length - 1] || 'London',
+  default: parsed ? parsed[parsed.length - 1] : 'London',
 });
 
 export { searchTermState, weatherState };
