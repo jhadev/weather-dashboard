@@ -26,6 +26,7 @@ function App() {
 
   useEffect(() => {
     async function getWeather() {
+      setWeather({});
       const data = await client(
         `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}`
       );
@@ -41,7 +42,6 @@ function App() {
       <CSSReset />
       <main>
         <NavDrawer height="10vh" title="weather dashboard">
-          <ToggleColorMode />
           <SearchForm />
         </NavDrawer>
         <Flex height="90vh" direction="row" align="center" justify="center">

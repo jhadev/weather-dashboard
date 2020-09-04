@@ -13,12 +13,19 @@ import {
 
 const NavDrawer = ({ children, title }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [placement, setPlacement] = useState('left');
+  const [placement, setPlacement] = useState('top');
 
   return (
     <div m={'auto'}>
-      <Button variant="ghost" onClick={onOpen}>
-        <Icon name="plus-square" size="24px" />
+      <Button
+        variant="ghost"
+        height="100%"
+        rounded="lg"
+        fontSize="xl"
+        width="100%"
+        p={3}
+        onClick={onOpen}>
+        <Icon name="chevron-down" size="48px" />
       </Button>
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />

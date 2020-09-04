@@ -24,6 +24,8 @@ function WeatherCard() {
       color = 'orange';
     } else if (temp < 75 && temp >= 55) {
       color = 'teal';
+    } else if (temp < 55 && temp >= 33) {
+      color = 'cyan';
     } else {
       color = 'blue';
     }

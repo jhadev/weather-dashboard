@@ -6,10 +6,10 @@ const ToggleColorMode = () => {
   return (
     <header>
       <Button
-        variantColor="pink"
-        variant={'ghost'}
+        variantColor={colorMode === 'light' ? 'gray' : 'yellow'}
+        variant="ghost"
         width="100%"
-        mt={1}
+        my={2}
         onClick={toggleColorMode}>
         {colorMode === 'light' ? <Icon name="moon" /> : <Icon name="sun" />}
       </Button>
