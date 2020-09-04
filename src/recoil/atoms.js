@@ -1,5 +1,9 @@
 import { atom } from 'recoil';
 
+const value = localStorage.getItem('saved');
+
+let parsed = JSON.parse(value);
+
 const weatherState = atom({
   key: 'weather',
   default: {},
@@ -7,7 +11,7 @@ const weatherState = atom({
 
 const searchTermState = atom({
   key: 'searchTerm',
-  default: 'London',
+  default: parsed[parsed.length - 1] || 'London',
 });
 
 export { searchTermState, weatherState };
