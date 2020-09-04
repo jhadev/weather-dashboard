@@ -1,21 +1,24 @@
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { CSSReset, Flex, Stack, Box } from '@chakra-ui/core';
+import { CSSReset, Flex, Stack } from '@chakra-ui/core';
 import { useLocalStorage } from 'react-use';
 import { client } from './utils/client';
 import {
   weatherState as weatherStateAtom,
   searchTermState as searchTermAtom,
+  forecastState as forecastStateAtom,
 } from './recoil/atoms';
 import ColorMode from './components/ColorMode';
 import SearchForm from './components/SearchForm';
 import NavDrawer from './components/NavDrawer';
 import Loading from './components/Loading';
 import WeatherCard from './components/WeatherCard';
+import Forecast from './components/Forecast';
 // const WeatherCard = React.lazy(() => import('./components/WeatherCard'));
 
 function App() {
   const [weather, setWeather] = useRecoilState(weatherStateAtom);
+  const [forecast, setForecast] = useRecoilState(forecastStateAtom);
   const searchTerm = useRecoilValue(searchTermAtom);
   const [value, setValue, remove] = useLocalStorage('saved', []);
 
@@ -46,9 +49,19 @@ function App() {
       setWeather(data);
     }
 
-    getWeather();
+    async function getForecast() {
+      const data = await client(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${searchTerm}`
+      );
+
+      setForecast(data.list);
+    }
+
+    getWeather().then(() => {
+      getForecast();
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm, setWeather]);
+  }, [searchTerm, setWeather, setForecast]);
 
   return (
     <ColorMode>
@@ -57,10 +70,11 @@ function App() {
         <NavDrawer height="10vh" title="weather dashboard">
           <SearchForm history={value} />
         </NavDrawer>
-        <Flex height="90vh" direction="row" align="center" justify="center">
+        <Flex height="70vh" direction="column" align="center" justify="center">
           {isLoaded ? (
             <Stack spacing={2}>
               <WeatherCard />
+              <Forecast />
               {/* <pre>{JSON.stringify(weather, null, 2)}</pre> */}
             </Stack>
           ) : (

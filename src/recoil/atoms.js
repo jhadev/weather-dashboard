@@ -8,10 +8,14 @@ const weatherState = atom({
   key: 'weather',
   default: {},
 });
+const forecastState = atom({
+  key: 'forecast',
+  default: [],
+});
 
 const searchTermState = atom({
   key: 'searchTerm',
   default: parsed ? parsed[parsed.length - 1] : 'London',
 });
 
-export { searchTermState, weatherState };
+export { forecastState, searchTermState, weatherState };
