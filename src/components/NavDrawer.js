@@ -31,7 +31,13 @@ const NavDrawer = ({ children, title }) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth="1px">{title}</DrawerHeader>
+          <DrawerHeader
+            fontWeight="bold"
+            textTransform="uppercase"
+            letterSpacing="wide"
+            borderBottomWidth="1px">
+            {title}
+          </DrawerHeader>
           <DrawerBody>{children}</DrawerBody>
         </DrawerContent>
       </Drawer>

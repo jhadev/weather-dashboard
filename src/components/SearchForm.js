@@ -8,6 +8,8 @@ import {
   Button,
   Flex,
   Stack,
+  Divider,
+  Text,
 } from '@chakra-ui/core';
 import ToggleColorMode from './ToggleColorMode';
 
@@ -30,23 +32,41 @@ function SearchForm({ history }) {
 
         <form onSubmit={submit}>
           <FormControl>
-            <FormLabel htmlFor="search">Search for a city.</FormLabel>
-            <Input ref={inputRef} id="search" placeholder="New York" />
+            {/* <FormLabel
+              textTransform="uppercase"
+              letterSpacing="wide"
+              textAlign="center"
+              mb={2}
+              color="gray.500"
+              htmlFor="search">
+              Search for a location
+            </FormLabel> */}
+            <Input ref={inputRef} id="search" placeholder="NEW YORK" />
 
             <Button
               type="submit"
               p={3}
               variantColor="cyan"
+              variant="outline"
               height="100%"
               rounded="lg"
               fontSize="xl"
               width="100%"
               mx="auto"
-              my={2}>
+              my={4}>
               SEARCH
             </Button>
           </FormControl>
         </form>
+        <Divider />
+        <Text
+          color="gray.500"
+          letterSpacing="wide"
+          fontWeight="semibold"
+          textAlign="center"
+          fontSize="md">
+          SEARCH HISTORY
+        </Text>
         {history.length &&
           history.map((term, i) => {
             return (

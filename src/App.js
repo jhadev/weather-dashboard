@@ -36,7 +36,19 @@ function App() {
       );
       console.log(data);
 
-      console.log(value);
+      const response = await fetch(
+        `https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_GEO_KEY}&lat=${data.coord.lat}&lon=${data.coord.lon}&format=json`
+      );
+
+      const location = await response.json();
+
+      const displayLocation = {
+        city: location.address.city,
+        state: location.address.state,
+        country: location.address.country_code.toUpperCase(),
+      };
+
+      console.log(location);
 
       let arr = [...value, data.name.toLowerCase()];
       arr = [...new Set(arr)];
@@ -46,7 +58,7 @@ function App() {
       }
       setValue(arr);
 
-      setWeather(data);
+      setWeather({ ...data, displayLocation });
     }
 
     async function getForecast() {
@@ -70,7 +82,7 @@ function App() {
         <NavDrawer height="10vh" title="weather dashboard">
           <SearchForm history={value} />
         </NavDrawer>
-        <Flex height="70vh" direction="column" align="center" justify="center">
+        <Flex height="80vh" direction="column" align="center" justify="center">
           {isLoaded ? (
             <Stack spacing={2}>
               <WeatherCard />

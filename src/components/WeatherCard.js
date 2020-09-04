@@ -7,7 +7,9 @@ import { toggleTempColor } from '../utils/toggleTempColor';
 function WeatherCard() {
   const weather = useRecoilValue(weatherStateAtom);
 
-  const location = `${weather.name}, ${weather.sys.country}`;
+  const location = `${weather.displayLocation.city}, ${weather.displayLocation.state}`;
+
+  const country = weather.displayLocation.country;
 
   const temp = Math.round(weather.main.temp);
   const high = Math.round(weather.main['temp_max']);
@@ -21,20 +23,31 @@ function WeatherCard() {
 
   function genCard() {
     return (
-      <Box p="6" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
+      <Box p="6" maxW="md" borderWidth="1px" rounded="lg" overflow="hidden">
         <Box
           mt="1"
           fontWeight="semibold"
           as="h2"
           lineHeight="tight"
           isTruncated>
-          <Flex justify="space-between" direction="row">
-            <Text fontSize="2xl" as="h4">
-              {location}
-            </Text>
-            <Text fontSize="2xl" as="h4">
-              {new Date().toLocaleDateString()}{' '}
-            </Text>
+          <Flex justify="center" direction="row">
+            <Stack textAlign="center" spacing={2}>
+              <Text
+                color="gray.700"
+                textTransform="uppercase"
+                fontWeight="bold"
+                fontSize="2xl"
+                letterSpacing="wide">
+                {location} &bull; {country}
+              </Text>
+              <Text
+                color="gray.500"
+                letterSpacing="wide"
+                fontWeight="semibold"
+                fontSize="2xl">
+                {new Date().toLocaleDateString()}{' '}
+              </Text>
+            </Stack>
           </Flex>
         </Box>
         <Flex justify="center" align="center">

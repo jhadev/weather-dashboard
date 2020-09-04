@@ -61,10 +61,20 @@ function Forecast() {
             lineHeight="tight"
             isTruncated>
             <Flex justify="space-between" direction="row">
-              <Text fontSize="2xl" as="h4">
+              <Text
+                color="gray.500"
+                fontWeight="semibold"
+                letterSpacing="wide"
+                fontSize="2xl"
+                textTransform="uppercase">
                 {description}
               </Text>
-              <Text fontSize="2xl" as="h4">
+              <Text
+                color="gray.500"
+                fontWeight="semibold"
+                letterSpacing="wide"
+                fontSize="2xl"
+                textTransform="uppercase">
                 {date}
               </Text>
             </Flex>
@@ -114,10 +124,10 @@ function Forecast() {
         mt={2}
         ref={btnRef}
         variant="outline"
-        variantColor="blue"
+        variantColor="cyan"
         size="lg"
         onClick={onOpen}>
-        {'Show 5 Day'}
+        SHOW 5 DAY
       </Button>
       <Modal
         onClose={onClose}
@@ -126,7 +136,9 @@ function Forecast() {
         scrollBehavior={scrollBehavior}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>5 Day Forecast</ModalHeader>
+          <ModalHeader letterSpacing="wide" fontWeight="semibold">
+            5 DAY FORECAST
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody>{forecast.length && fiveDay}</ModalBody>
           <ModalFooter>{/* <Button>Close</Button> */}</ModalFooter>
